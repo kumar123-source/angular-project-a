@@ -1,0 +1,78 @@
+
+    <div class="container">
+        <div class="row heading">
+          <div class="col-md">
+              ID
+          </div>
+          <div class="col-md">
+              Real name
+          </div>
+          <div class="col-md">
+              TZ
+          </div>
+          <div class="col-md">
+              <div class="row">
+                <div class="col-md">Start Time</div>
+                <div class="col-md">End Time</div>
+              </div>
+          </div>
+        </div>
+        <div class="row" *ngFor="let users of userData.members">
+          <div class="col-md">
+              {{users.id}}
+          </div>
+          <div class="col-md" (click)="passIndex(users)">
+              {{ users.real_name }}
+          </div>
+          <div class="col-md">
+              {{ users.tz }}
+          </div>
+          <div class="col-md">
+              <div class="row" *ngFor="let usersTime of users.activity_periods">
+                <div class="col-md">
+                  {{ usersTime.start_time }}
+                </div>
+                <div class="col-md">
+                    {{ usersTime.end_time }}
+                  </div>
+              </div>
+          </div>
+        </div>
+
+      <div class="eg_model">
+        <!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Calender</h4>
+        <button type="button" class="close" (click)="hideModal()">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <div class="col-md-4">
+              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+            </div>
+          <div class="calender_eg">
+              <mwl-calendar-month-view
+                [viewDate]="viewDate"
+                [events]="events">
+              </mwl-calendar-month-view>
+            </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="hideModal()">Close</button>
+
+        <!-- this button is hidden, used to close from typescript -->
+        <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+      </div>
